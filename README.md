@@ -1,8 +1,8 @@
-Multi-Tenant Cloud Infrastructure Simulator
+**Multi-Tenant Cloud Infrastructure Simulator**
 
 A lightweight PaaS (Platform-as-a-Service) control plane built to simulate how cloud platforms isolate tenant workloads, schedule asynchronous infrastructure tasks, and maintain zero-downtime traffic routing during node outages.
 
-Why I Built This
+**Why I Built This?**
 
 When building multi-tenant developer platforms, two core challenges always come up:
 
@@ -12,7 +12,7 @@ High availability under chaos: If an underlying node dies or a pod gets reschedu
 
 I built this project to model a working solution to both problems using FastAPI, Redis, Kubernetes, and Azure infrastructure primitives.
 
-Architecture Overview
+**Architecture Overview**
 
                       +----------------------------------+
                       |         Client / HTTP Request    |
@@ -47,7 +47,7 @@ Architecture Overview
                       +----------------------------------+
 
 
-Core Workflow
+**Core Workflow**
 
 Asynchronous Task Dispatch: The FastAPI control plane accepts deployment specs, assigns a tracking ID, and enqueues the job into Redis/Celery before immediately returning 202 Accepted.
 
@@ -55,7 +55,7 @@ Dynamic Provisioning: Celery workers use the official Python Kubernetes SDK to c
 
 Fail-Open Load Balancing: The workload exposes health endpoints (/healthz). Azure Load Balancer probes interact with Kubernetes readiness checks to remove failing pods from active backends prior to node teardown.
 
-Tech Stack
+**Tech Stack**
 
 Backend & Control Plane: Python 3.11, FastAPI, Celery, Redis
 
@@ -65,7 +65,7 @@ Infrastructure as Code: Terraform, Azure Kubernetes Service (AKS), Azure Load Ba
 
 Chaos Testing: Asyncio, HTTPX, Locust
 
-Repository Structure
+**Repository Structure**
 
 .
 ├── control-plane/          # FastAPI application & Celery workers
@@ -81,7 +81,7 @@ Repository Structure
 └── README.md
 
 
-Running Locally
+**Running Locally**
 
 Prerequisites
 
@@ -125,7 +125,7 @@ To test high availability and measure dropped requests during a node failure sim
 python chaos-testing/simulate_outage.py
 
 
-Chaos Engineering Test Results
+**Chaos Engineering Test Results**
 
 During testing, continuous HTTP GET requests were dispatched against the application endpoint while deleting pods and cordoning nodes in the cluster.
 
