@@ -1,4 +1,4 @@
-structure Simulator
+Multi-Tenant Cloud Infrastructure Simulator
 
 A lightweight PaaS (Platform-as-a-Service) control plane built to simulate how cloud platforms isolate tenant workloads, schedule asynchronous infrastructure tasks, and maintain zero-downtime traffic routing during node outages.
 
